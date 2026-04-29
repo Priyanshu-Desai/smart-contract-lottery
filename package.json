@@ -10,6 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "dotenv": "^17.4.2",
     "hardhat": "^3.4.2"
   },
   "devDependencies": {
@@ -19,6 +20,11 @@
     "chai": "^6.2.2",
     "ethers": "^6.16.0",
     "forge-std": "github:foundry-rs/forge-std#v1.9.4",
-    "mocha": "^11.7.5"
+    "hardhat-deploy": "^2.0.5",
+    "hardhat-etherscan": "^1.0.1",
+    "mocha": "^11.7.5",
+    "prettier": "^3.8.3",
+    "prettier-plugin-solidity": "^2.3.1",
+    "solhint": "^6.2.1"
   }
 }
