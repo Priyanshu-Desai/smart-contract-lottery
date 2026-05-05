@@ -7,6 +7,8 @@ contract Raffle {
     uint256 private immutable i_ticketPrice;
     address payable[] private s_players;
 
+    event RaffleEnter(address indexed player);
+
     constructor(uint256 _ticketPrice) {
         i_ticketPrice = _ticketPrice;
     }
@@ -16,6 +18,7 @@ contract Raffle {
             revert Raffle__NotEnoughEthSent();
         }
         s_players.push(payable(msg.sender));
+        emit RaffleEnter(msg.sender);
     }
 
     // function winner(){}
