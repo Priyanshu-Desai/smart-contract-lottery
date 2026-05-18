@@ -10,12 +10,14 @@ contract Raffle is VRFConsumerBaseV2Plus {
     uint256 private immutable i_ticketPrice;
     address payable[] private s_players;
     VRFCoordinatorV2Interface private immutable i_vrfCoordinator;
+    bytes32 private immutable i_gasLane;
 
     event RaffleEnter(address indexed player);
 
-    constructor(address _vrfCoordinator, uint256 _ticketPrice) VRFConsumerBaseV2Plus(_vrfCoordinator) {
+    constructor(address _vrfCoordinator, uint256 _ticketPrice, bytes32 _gasLane) VRFConsumerBaseV2Plus(_vrfCoordinator) {
         i_vrfCoordinator = VRFCoordinatorV2Interface(_vrfCoordinator);
         i_ticketPrice = _ticketPrice;
+        i_gasLane = _gasLane;
     }
 
     function enter() public payable{
@@ -29,7 +31,7 @@ contract Raffle is VRFConsumerBaseV2Plus {
     function requestWinner() external {
         i_vrfCoordinator.requestRandomWords(
             // Parameters for the VRF request
-            keyHash,
+            i_gasLane,
             subscriptionId,
             requestConfirmations,
             callbackGasLimit,
